@@ -18,11 +18,13 @@ Many IPL matches are affected by D/L method, rain interruptions, or are abandone
 midway. To keep the "minimum team score" analysis accurate, I only counted an 
 innings as valid if the team played all 20 overs or lost all 10 wickets.
 
+​```
 IF { FIXED [Match Id]: SUM([Wicket_count]) } = 10
 OR { FIXED [Match Id]: MAX([Over Number]) } >= 19
 THEN "Complete"
 ELSE "Incomplete"
 END
+​```
 
 *(Overs stored as 0-19 in this dataset, so 19 = a full 20-over innings)*
 
@@ -33,12 +35,14 @@ it doesn't get applied before other calculations run, which silently breaks the 
 Not every wicket counts toward a bowler's tally. Run outs, retired hurt, and 
 retired out shouldn't be credited to the bowler.
 
+```
 IF [Wicket Kind] != "run out"
 AND [Wicket Kind] != "retired hurt"
 AND [Wicket Kind] != "retired out"
 THEN 1
 ELSE 0
 END
+```
 
 ## Tools
 Tableau, LOD (Level of Detail) expressions, Calculated fields
