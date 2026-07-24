@@ -45,6 +45,9 @@ END
 ## Tools
 Tableau, LOD (Level of Detail) expressions, Calculated fields
 
+## Dataset
+Ball-by-ball IPL data (2008-2025), sourced from a public Kaggle dataset.
+
 ## Dashboard preview
 ![IPL Dashboard](IPL_Statistical_Analysis.jfif)
 
