@@ -17,15 +17,13 @@ and incomplete matches.
 Many IPL matches are affected by D/L method, rain interruptions, or are abandoned 
 midway. To keep the "minimum team score" analysis accurate, I only counted an 
 innings as valid if the team played all 20 overs or lost all 10 wickets.
-
-​```
+```
 IF { FIXED [Match Id]: SUM([Wicket_count]) } = 10
 OR { FIXED [Match Id]: MAX([Over Number]) } >= 19
 THEN "Complete"
 ELSE "Incomplete"
 END
-​```
-
+```
 *(Overs stored as 0-19 in this dataset, so 19 = a full 20-over innings)*
 
 Learned the hard way that this filter needs to be **added to context**, otherwise 
