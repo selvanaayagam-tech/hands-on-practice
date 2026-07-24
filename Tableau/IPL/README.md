@@ -44,7 +44,7 @@ END
 Tableau, LOD (Level of Detail) expressions, Calculated fields
 
 ## Dashboard preview
-![IPL Dashboard](screenshot.png)
+![IPL Dashboard](IPL_Statistical_Analysis.jfif)
 
 ## Video walkthrough
 🎥 [Watch dashboard walkthrough](video-link-will-go-here)
