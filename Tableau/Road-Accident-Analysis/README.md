@@ -35,7 +35,7 @@ and surged again in January (likely return travel)
 Tableau, OBS Studio (dashboard walkthrough recording)
 
 ## Dashboard preview
-![Road Accident Dashboard](ROAD_ACCIDENT_ANALYSIS.JPG)
+![Road Accident Dashboard](Road_Accident_Analysis.JPG)
 
 ## Video walkthrough
 🎥 [Watch dashboard walkthrough](https://github.com/user-attachments/assets/58bb214e-cb6a-47c0-93e4-9a469975e91c)
