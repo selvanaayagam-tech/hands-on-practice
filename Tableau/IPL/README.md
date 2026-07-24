@@ -49,7 +49,7 @@ Tableau, LOD (Level of Detail) expressions, Calculated fields
 ![IPL Dashboard](IPL_Statistical_Analysis.jfif)
 
 ## Video walkthrough
-🎥 [Watch dashboard walkthrough](video-link-will-go-here)
+🎥 [Watch dashboard walkthrough](https://github.com/user-attachments/assets/e965629f-da54-402b-9704-e6780c1b1843)
 
 ## What I learned
 - Filter context and why order of operations matters in Tableau
