@@ -23,8 +23,8 @@ I also missed doing lemmatization before the train-test split the first time aro
 This was a good lesson in understanding why the order of steps in a machine learning pipeline matters, not just what each step does individually.
 
 One clear issue I found: the model struggles with short reviews. For example, the input:
-"This movie is really good and felt good."
-was predicted as negative, even though it's clearly a positive review. Since Bag of Words only looks at word counts and not context or word order, short reviews don't give the model enough pattern to work with. Longer, more detailed reviews get classified correctly.
+
+"This movie is really good and felt good."was predicted as negative, even though it's clearly a positive review. Since Bag of Words only looks at word counts and not context or word order, short reviews don't give the model enough pattern to work with. Longer, more detailed reviews get classified correctly.
 
 ## Tools used
 
