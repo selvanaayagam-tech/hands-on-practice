@@ -9,7 +9,7 @@ and incomplete matches.
 - Purple Cap (bowler wickets) analysis
 - Highest & lowest team totals per season
 - Champions summary: title winners and championship counts by team
-- Interactive filters for season, team, and match type
+- Interactive filters for season
 
 ## Key challenges solved
 
