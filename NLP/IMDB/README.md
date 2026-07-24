@@ -67,3 +67,7 @@ Model accuracy: 85.88%
 ## Dataset source
 
 Sourced from a public dataset (IMDB movie reviews).
+
+## Note
+
+This is a hands-on practice exercise, not a deployed project. I haven't learned deployment yet (planned for later in my course). The focus here is on the ML pipeline itself: preprocessing, feature extraction, model training, and evaluation.
