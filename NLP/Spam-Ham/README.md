@@ -17,9 +17,9 @@ Text classification to detect spam vs ham (legitimate) messages, comparing two a
 
 The first thing I got stuck on was deciding whether to go with the imbalanced dataset as it was, or fix it with undersampling. I wanted to actually compare both instead of picking one, so I built both versions.
 
-On the imbalanced data, the model scored 97.6% accuracy, but this number was misleading. A model that always predicted "ham" would already score 86.6% accuracy without learning anything. Looking at the classification report more closely, spam precision was a perfect 1.00, but spam recall was only 82%, meaning 27 out of 149 actual spam messages were missed and classified as ham.
+On the imbalanced data, the model scored 96.7% accuracy, but this number was misleading. A model that always predicted "ham" would already score about 86.6% accuracy without learning anything. Looking at the classification report more closely, spam precision was 0.99, but spam recall was only 0.76, meaning 36 out of 149 actual spam messages were missed and classified as ham.
 
-After undersampling the majority class to balance ham and spam, accuracy actually dropped to 96.3%. At first this looked like the model got worse, but it didn't. The test set became balanced, so the model no longer had an easy majority-class advantage. Spam recall improved to 97%, catching 149 out of 154 actual spam messages, and the spam F1-score improved from 0.90 to 0.96.
+After undersampling the majority class to balance ham and spam, accuracy actually dropped to 95.7%. At first this looked like the model got worse, but it didn't. The test set became balanced, so the model no longer had an easy majority-class advantage. Spam recall improved to 0.95, catching 147 out of 154 actual spam messages, and the spam F1-score improved from 0.86 to 0.96.
 
 Key takeaway: accuracy alone is not a reliable metric on imbalanced datasets. A drop in accuracy after undersampling does not mean the model got worse, it means the evaluation became fairer. In this case, the trade-off actually improved the model's ability to correctly catch spam, which is the more important goal in a spam detection system.
 
@@ -73,7 +73,7 @@ which is clearly a ham message. The model trained without undersampling correctl
 - Why accuracy alone can be misleading on imbalanced datasets
 - How to read and compare precision, recall, and F1-score per class
 - Why undersampling can lower accuracy while actually improving the model's real-world usefulness for the minority class
-- That undersampling has a trade-off too, reducing majority-class examples can affect how well the model handles certain majority-class cases, as seen with the misclassified ham example
+- Undersampling has a trade-off too, reducing majority-class examples can affect how well the model handles certain majority-class cases, as seen with the misclassified ham example
 - How to correctly apply a preprocessing function across an entire pandas column using `.apply()`, instead of passing the whole Series directly
 - The difference between `fit_transform` and `transform`, and why fitting must only happen on training data, never on test data
 - How to use TfidfVectorizer correctly, applying it after the train-test split
