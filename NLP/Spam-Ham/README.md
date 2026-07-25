@@ -41,6 +41,12 @@ One more interesting observation while testing with my own custom input. I passe
 
 which is clearly a ham message. The model trained without undersampling correctly predicted it as ham, likely because it had seen a much larger volume of ham messages during training. But the model trained with undersampling predicted it as spam. This was a useful reminder that undersampling, while it improved spam recall on the test set, also means the model saw far fewer ham examples overall, which can make it slightly less reliable at recognizing certain ham messages it wasn't exposed to enough. It shows there's a real trade-off between the two approaches, not a simple "one is better" conclusion.
 
+### Custom test email prediction
+
+| Without Undersampling (correctly predicted as ham) | With Undersampling (incorrectly predicted as spam) |
+|---|---|
+| ![Test email without undersampling](Test_Email_for_Without_undersampled.JPG) | ![Test email with undersampling](Test_Email_for_undersampled.JPG) |
+
 ## Tools used
 
 - Python
@@ -54,13 +60,6 @@ which is clearly a ham message. The model trained without undersampling correctl
 - `NLP_email_ham_vs_Spam_without_undersampling.ipynb`
 - `NLP_email_ham_vs_Spam_undersampling.ipynb`
 
-## Results comparison
-
-| Approach | Accuracy | Spam Precision | Spam Recall | Spam F1-score |
-|---|---|---|---|---|
-| Without undersampling | 97.6% | 1.00 | 82% | 0.90 |
-| With undersampling | 96.3% | - | 97% | 0.96 |
-
 ## Output preview
 
 ### Accuracy report and confusion matrix
@@ -68,18 +67,6 @@ which is clearly a ham message. The model trained without undersampling correctl
 | Without Undersampling | With Undersampling |
 |---|---|
 | ![Without undersampling CM](Without_undersampling_CM.JPG) | ![With undersampling CM](undersampling_CM.JPG) |
-
-### Custom test email prediction
-
-**Without undersampling** (correctly predicted as ham):
-
-![test email without undersampling](Test_Email_for_Without_undersampled.JPG)
-
-**With undersampling** (incorrectly predicted as spam):
-
-![test email with undersampling](Test_Email_for_undersampled.JPG)
-
-This shows the trade-off discussed above, undersampling improved spam recall overall, but reduced exposure to ham examples, which affected this specific prediction.
 
 ## What I learned
 
@@ -97,4 +84,4 @@ This is a hands-on practice exercise, not a deployed project. I haven't learned 
 
 ## Dataset source
 
-Sourced from a public dataset (SMS Spam Collection).
+Sourced from a public dataset (Spam).
