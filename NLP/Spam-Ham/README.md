@@ -51,8 +51,8 @@ which is clearly a ham message. The model trained without undersampling correctl
 
 ## Files in this folder
 
-- `spam_ham_without_undersampling.ipynb`
-- `spam_ham_with_undersampling.ipynb`
+- `NLP_email_ham_vs_Spam_without_undersampling.ipynb`
+- `NLP_email_ham_vs_Spam_undersampling.ipynb`
 
 ## Results comparison
 
