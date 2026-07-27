@@ -78,7 +78,7 @@ Predicted House Price: 8,928,361.77
 
 ## Note
 
-This is a hands-on practice exercise, not a deployed project. I haven't learned deployment yet, that's planned for later in my course.
+This is a hands-on practice exercise, not a deployed project.
 
 ## Dataset source
 
