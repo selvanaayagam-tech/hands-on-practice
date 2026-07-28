@@ -18,19 +18,19 @@ Predicting total taxi fare using Linear Regression, based on trip details like d
 
 ## Key challenges
 
-The biggest challenge in this project was a data leakage mistake I didn't catch right away. I initially chose my features (x) as trip_duration, distance_traveled, num_of_passengers, fare, tip, miscellaneous_fees, and surge_applied, with total_fare as the target (y). After training, my R2 Score came out as 100%, with MAE, MSE, and RMSE all extremely close to zero.
+The biggest challenge in this project was a data leakage mistake I didn't catch right away. I initially chose my features (x) as `trip_duration`, `distance_traveled`, `num_of_passengers`, `fare`, `tip`, `miscellaneous_fees`, and `surge_applied`, with `total_fare` as the target (y). After training, my R2 Score came out as 100%, with MAE, MSE, and RMSE all extremely close to zero.
 
-The number looked correct, but something felt wrong about a perfect score. I looked into it and realized the issue: total_fare is literally the sum of fare, tip, and miscellaneous_fees. By including those columns as features while predicting total_fare, the model wasn't learning any real pattern, it was just learning basic addition. This is a classic data leakage problem, where a feature directly contains or reveals the answer to the target.
+The number looked correct, but something felt wrong about a perfect score. I looked into it and realized the issue: `total_fare` is literally the sum of `fare`, `tip`, and `miscellaneous_fees`. By including those columns as features while predicting total_fare, the model wasn't learning any real pattern, it was just learning basic addition. This is a classic data leakage problem, where a feature directly contains or reveals the answer to the target.
 
-To fix it, I removed fare from the features, since it was the biggest contributor to total_fare. I initially kept tip and miscellaneous_fees since they contribute a much smaller part of the total. After this fix, R2 Score dropped to 39.33%, which is a far more realistic and honest number, but it also confirmed the leakage was the reason behind the earlier perfect score.
+To fix it, I removed `fare` from the features, since it was the biggest contributor to `total_fare`. I kept `tip` and `miscellaneous_fees` since they contribute a much smaller part of the total. After this fix, R2 Score dropped to 39.33%, which is a far more realistic and honest number, but it also confirmed the leakage was the reason behind the earlier perfect score.
 
 Here is a comparison of what happened across the different feature combinations I tried:
 
 | # | Features in x | Target | MAE | MSE | RMSE | R2 |
 |---|---|---|---|---|---|---|
-| 1 | trip_duration, distance_traveled, num_of_passengers, surge_applied, fare, tip, miscellaneous_fees (full leakage) | total_fare | 1.37e-13 | 5.65e-26 | 2.38e-13 | 100.00% |
-| 2 | trip_duration, distance_traveled, num_of_passengers, surge_applied (clean, no leakage) | total_fare | 60.60 | 8911.48 | 94.40 | 1.87% |
-| 3 | trip_duration, distance_traveled, num_of_passengers, surge_applied, tip, miscellaneous_fees (partial leakage) | total_fare | 43.99 | 5509.15 | 74.22 | 39.33% |
+| 1 | `trip_duration`, `distance_traveled`, `num_of_passengers`, `surge_applied`, `fare`, `tip`, `miscellaneous_fees` (full leakage) | `total_fare` | 1.37e-13 | 5.65e-26 | 2.38e-13 | 100.00% |
+| 2 | `trip_duration`, `distance_traveled`, `num_of_passengers`, `surge_applied` (clean, no leakage) | `total_fare` | 60.60 | 8911.48 | 94.40 | 1.87% |
+| 3 | `trip_duration`, `distance_traveled`, `num_of_passengers`, `surge_applied`, `tip`, `miscellaneous_fees` (partial leakage) | `total_fare` | 43.99 | 5509.15 | 74.22 | 39.33% |
 
 This comparison itself became one of the most useful things I learned from this project, seeing how much a single leaked feature can distort results, and how removing leakage entirely (row 2) shows the trip details alone barely explain fare variation, meaning distance and duration alone aren't strong predictors of the final fare in this dataset.
 
