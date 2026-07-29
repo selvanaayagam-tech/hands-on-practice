@@ -27,11 +27,8 @@ This was a useful reminder that in sensitive domains like healthcare, accuracy a
 ## Results
 
 - Accuracy: 97.37%
-
-| Predicted Non Cancerous | Predicted Cancerous |
-|---|---|
-| **Actual Non Cancerous:** 70 (True Positive) | 1 (False Positive) |
-| **Actual Cancerous:** 2 (False Negative) | 41 (True Negative) |
+- Precision, Recall, F1-score: see attached classification report image
+- Confusion matrix: see attached image below
 
 ## Tools used
 
