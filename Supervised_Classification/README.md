@@ -1,9 +1,5 @@
-
 # Supervised Classification
 
-Hands-on supervised classification practice exercises using Python in VS Code.
+Hands-on supervised classification practice exercises using Python in VS Code, organized by algorithm.
 
-This folder contains classification practice built using Logistic Regression, applied to different real-world domains.
-
-- Breast-Cancer-Detection: Classifying tumors as malignant or benign using Logistic Regression
-- UTM-Testing (coming soon): Classifying Universal Testing Machine reports into safe, fracture, or yield categories
+- Logistic_Regression: Classification exercises using Logistic Regression
