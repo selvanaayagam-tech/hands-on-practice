@@ -29,24 +29,48 @@ Having already tried undersampling in an earlier project, I wanted to try a diff
 
 After applying `class_weight='balanced'`, Fractured recall improved to 1.00, catching all 17 actual fracture cases, though precision dropped to 0.68, meaning some false alarms were introduced. For a structural failure detection use case like this, missing an actual fracture (a false negative) is far more dangerous than raising a false alarm (a false positive), since a missed fracture could mean a genuinely unsafe material is marked safe. This makes the balanced model the better and more responsible choice, despite the drop in precision.
 
-A third mistake, made purely out of excitement while building the user input section, was initially asking the user to directly enter Cross_Sectional_Area_mm2, Stress_MPa, and Strain_Percent as raw inputs. These aren't independent measurements, they're calculated values derived from other more basic inputs. Asking the user to type them in directly defeats the purpose of a prediction tool, since the user would essentially need to already know the answer-adjacent values themselves. I fixed this by removing those as direct inputs and instead writing dedicated formulas to calculate Cross_Sectional_Area_mm2, Stress_MPa, and Strain_Percent from the more fundamental inputs the user actually provides, keeping the prediction genuinely useful from raw, real-world measurable inputs.
+A third mistake, made purely out of excitement while building the user input section, was initially asking the user to directly enter Cross_Sectional_Area_mm2, Stress_MPa, and Strain_Percent as raw inputs. These aren't independent measurements, they're calculated values derived from other, more basic inputs:
+
+```python
+Cross_Sectional_Area_mm2 = np.pi * (Specimen_Diameter_mm / 2) ** 2
+Stress_MPa = (Applied_Load_kN * 1000) / Cross_Sectional_Area_mm2
+Strain_Percent = (Displacement_mm / Original_Length_mm) * 100
+```
+
+Asking the user to type these values in directly defeats the purpose of a prediction tool, since the user would essentially need to already know the answer-adjacent values themselves. I fixed this by removing those as direct inputs and instead calculating Cross_Sectional_Area_mm2, Stress_MPa, and Strain_Percent internally from the actual raw inputs a user would realistically have, specimen diameter, applied load, displacement, and original length, keeping the prediction genuinely useful from real-world measurable inputs.
 
 ## Results comparison
 
-| Metric | Without Balancing | With class_weight='balanced' |
-|---|---|---|
-| Accuracy | 92.00% | 94.50% |
-| Fractured Precision | 1.00 | 0.68 |
-| Fractured Recall | 0.18 | 1.00 |
-| Fractured F1-score | 0.30 | 0.81 |
-| Safe Precision | 0.97 | 0.99 |
-| Safe Recall | 1.00 | 1.00 |
-| Safe F1-score | 0.98 | 0.99 |
-| Yielded Precision | 0.82 | 0.96 |
-| Yielded Recall | 0.96 | 0.84 |
-| Yielded F1-score | 0.88 | 0.89 |
-| Macro Avg F1-score | 0.72 | 0.90 |
-| Weighted Avg F1-score | 0.90 | 0.95 |
+<table>
+<tr>
+<th>Without Balancing</th>
+<th>With class_weight='balanced'</th>
+</tr>
+<tr>
+<td>
+
+| Class | Precision | Recall | F1-score |
+|---|---|---|---|
+| Fractured | 1.00 | 0.18 | 0.30 |
+| Safe | 0.97 | 1.00 | 0.98 |
+| Yielded | 0.82 | 0.96 | 0.88 |
+
+</td>
+<td>
+
+| Class | Precision | Recall | F1-score |
+|---|---|---|---|
+| Fractured | 0.68 | 1.00 | 0.81 |
+| Safe | 0.99 | 0.98 | 0.99 |
+| Yielded | 0.96 | 0.84 | 0.89 |
+
+</td>
+</tr>
+</table>
+
+Accuracy: 92.00% (without balancing) vs 94.50% (with class_weight='balanced')
+
+**Key takeaway:** Without balancing, the model rarely predicted the minority class (Fractured), missing 14 out of 17 real fracture cases (recall 0.18) despite being accurate whenever it did predict Fractured (precision 1.00). Applying class_weight='balanced' forced the model to take the minority class seriously, catching all 17 fracture cases (recall 1.00) at the cost of some false alarms (precision 0.68). For a structural failure detection use case, missing a real fracture (false negative) is more costly than a false alarm (false positive), making the balanced model the better choice despite the precision trade-off.
 
 ## Tools used
 
