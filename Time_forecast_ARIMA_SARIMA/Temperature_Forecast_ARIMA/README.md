@@ -15,7 +15,7 @@ Forecasting hourly temperature readings using ARIMA, a time series forecasting m
 
 ## Key challenges
 
-This project used a fundamentally different approach compared to my earlier supervised learning exercises, and understanding that difference was itself the first challenge. In models like Linear Regression or Logistic Regression, you select separate feature columns (x) and a target column (y), then split rows randomly into train and test. In time series forecasting, there's only one series, the sequence of temperature readings itself. You split it by time instead, an earlier chunk becomes train, and a later chunk becomes test, since the forecast is based purely on the series' own past values and order, not on any external features.
+This exercise used a fundamentally different approach compared to my earlier supervised learning exercises, and understanding that difference was itself the first challenge. In models like Linear Regression or Logistic Regression, you select separate feature columns (x) and a target column (y), then split rows randomly into train and test. In time series forecasting, there's only one series, the sequence of temperature readings itself. You split it by time instead, an earlier chunk becomes train, and a later chunk becomes test, since the forecast is based purely on the series' own past values and order, not on any external features.
 
 Understanding the ARIMA order parameter (p, d, q) was another key part of this project:
 - p (AR term) is the number of past values used to predict the current value. p=1 means today's value is modeled using yesterday's value.
